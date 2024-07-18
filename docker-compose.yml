@@ -1,0 +1,17 @@
+version: "3.7"
+
+services:
+  pokemon_frontend:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    container_name: pokemon_frontend
+    entrypoint: "sh -c 'npm install &&npm start'"
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+    ports:
+      - "3001:3000"
+    volumes:
+      - "./src:/pokemon_frontend/src"
+      - "./public:/pokemon_frontend/public"
+      - "./docker/.env:/pokemon_frontend/.env"
